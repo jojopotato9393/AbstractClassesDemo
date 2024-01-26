@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,61 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            var vehicles = new List<Vehicle>();
+
+            var car = new Car() 
+            {
+                Year = "2022",
+                Make = "Chevy",
+                Model = "Camaro",
+                HasFourSeats = true,
+            };
+            var motorcycle = new Motorcycle() 
+            { 
+                Year = "2023",
+                Make = "Kawi",
+                Model = "ninja",
+                HasTwoWheels = true,
+            };
+
+            Vehicle vehicle1 = new Car()
+            { Make = "toyota",
+                Model = "Gr86",
+                Year = "2019"
+            };
+            Vehicle vehicle2 = new Motorcycle()
+            {
+                Make = "Honda",
+                Model = "r1",
+                Year = "2020"
+            };
+            vehicles.Add(car);
+            vehicles.Add(motorcycle);
+            vehicles.Add(vehicle1);
+            vehicles.Add(vehicle2);
+
+            car.DriveA();
+            car.DriveV();
+            motorcycle.DriveA(); 
+            motorcycle.DriveV();
+
+
+            foreach (var vehicle in vehicles) 
+            {
+             Console.WriteLine($"Year: {vehicle.Year}, Make: {vehicle.Make}, Model: {vehicle.Model}");
+                if(vehicle is Car c)
+                {
+                    Console.WriteLine($"has FourSeats{c.HasFourSeats}");
+                }
+                else if (vehicle is Motorcycle m)
+                {
+                    Console.WriteLine($"HasTwoWheels {m.HasTwoWheels}");
+                    vehicle.DriveA();
+                    vehicle.DriveV();
+                    Console.WriteLine();
+                }
+            }
+
             /*
              * Todo: Follow all comments!! 
              * Double click on the region (gray box) to view all comments
